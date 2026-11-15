@@ -6,7 +6,7 @@
 		"format": "turbo run format",
 		"lint": "turbo run lint",
 		"lint:report": "turbo run lint:report",
-        "build:types": "turbo run build:types",
+		"build:types": "turbo run build:types",
 		"typecheck": "turbo run typecheck",
 		"test": "turbo run test",
 		"test:unit": "turbo run test:unit",
