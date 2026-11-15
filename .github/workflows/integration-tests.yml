@@ -1,22 +1,48 @@
-name: Docudeck CI
+name: "Integration Tests"
 
 on:
-  pull_request:
-  push:
-    branches: [main]
+  workflow_call:
+
+env:
+  DATABASE_URL: postgres://postgres:password@localhost:5432/test_db
 
 jobs:
-  checks:
+  integration-tests:
     runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:18
+        env:
+          POSTGRES_DB: test_db
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: password
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4
+      - name: Checkout Code
+        uses: actions/checkout@v6
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v6
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
         with:
-          version: 10.21.0
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-      - run: pnpm install --no-frozen-lockfile
-      - run: pnpm lint
-      - run: pnpm typecheck
-      - run: pnpm test
+          node-version: "24"
+          cache: "pnpm" # Caches node_modules automatically
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Apply database migrations
+        run: pnpm db:migrate
+
+      - name: Run Global Monorepo Integration Tests
+        run: pnpm test:integration
