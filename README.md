@@ -211,18 +211,18 @@ The `packages/database/drizzle/` directory contains SQL migrations used by `migr
 
 ## Prerequisites
 
-- Node.js 22 or later.
-- pnpm 10.21.0 (use Corepack).
-- PostgreSQL 16 or a compatible Neon PostgreSQL database.
-- Git.
-- Docker Engine and Docker Compose only if using the container workflow.
+- Node.js (preferably, version >= v24.x)
+- PostgreSQL (preferably, version >= v18.x)
+- pnpm (preferably, version >= v12.5.1)
+- Docker (preferably the latest version)
+- Git (preferably the latest version)
 
 ## Setup
 
 ### 1. Clone the project's repository
 
 ```bash
-git clone <your-repository-url> docudeck
+git clone https://github.com/RajatYadav01/docudeck
 cd docudeck
 ```
 
@@ -231,8 +231,6 @@ If this source is being used from an exported archive, extract it and change int
 ### 2. Install dependencies
 
 ```bash
-corepack enable
-corepack prepare pnpm@10.21.0 --activate
 pnpm install
 ```
 
