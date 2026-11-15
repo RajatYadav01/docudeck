@@ -8,6 +8,7 @@
 	"types": "./src/index.ts",
 	"exports": {
 		".": "./src/index.ts",
+		"./database-env": "./src/database-env.ts",
 		"./web-env": "./src/web-env.ts"
 	},
 	"scripts": {

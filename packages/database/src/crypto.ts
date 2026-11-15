@@ -1,10 +1,10 @@
 import { createCipheriv, createDecipheriv, randomBytes } from "node:crypto";
-import { getWebEnv } from "@docudeck/config";
+import { getDatabaseEnv } from "@docudeck/config";
 
 const ENCRYPTION_VERSION = 1;
 
 function getKey(): Buffer {
-	return Buffer.from(getWebEnv().DOCUMENT_ENCRYPTION_KEY, "hex");
+	return Buffer.from(getDatabaseEnv().DOCUMENT_ENCRYPTION_KEY, "hex");
 }
 
 /** Encrypt JSON before it is persisted. AES-256-GCM authenticates ciphertext as well as encrypting it. */

@@ -1,4 +1,4 @@
-import { getWebEnv } from "@docudeck/config";
+import { getDatabaseEnv } from "@docudeck/config";
 import { drizzle } from "drizzle-orm/postgres-js";
 import postgres from "postgres";
 import { relations } from "./db/relations";
@@ -9,7 +9,7 @@ const globalForDocudeck = globalThis as typeof globalThis & {
 };
 
 function createDatabase() {
-	const env = getWebEnv();
+	const env = getDatabaseEnv();
 	const sql = postgres(env.DATABASE_URL, {
 		max: env.NODE_ENV === "production" ? 5 : 10,
 		idle_timeout: 20,
