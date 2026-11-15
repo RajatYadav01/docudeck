@@ -2,6 +2,7 @@
 	"files": [],
 	"references": [
 		{ "path": "apps/web" },
+		{ "path": "packages/config" },
 		{ "path": "packages/database" },
 		{ "path": "packages/e2e-tests" },
 		{ "path": "packages/constants" },

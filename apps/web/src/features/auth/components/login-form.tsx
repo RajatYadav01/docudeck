@@ -8,11 +8,11 @@ const demoUsers = [
 	{ name: "Alice Morgan", email: "alice@example.com", description: "Document owner" },
 	{ name: "Bob Chen", email: "bob@example.com", description: "Shared editor" },
 	{ name: "Charlie Rivera", email: "charlie@example.com", description: "Additional user" },
-];
+] as const;
 
 export function LoginForm() {
 	const router = useRouter();
-	const [email, setEmail] = useState(demoUsers[0].email);
+	const [email, setEmail] = useState<string>(demoUsers[0]?.email ?? "alice@example.com");
 	const [password, setPassword] = useState("Docudeck!2026");
 	const [error, setError] = useState("");
 	const [loading, setLoading] = useState(false);
@@ -121,6 +121,7 @@ export function LoginForm() {
 							</p>
 						)}
 						<button
+							type="submit"
 							disabled={loading}
 							className="flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-action text-sm font-semibold text-action-ink transition hover:bg-action-hover disabled:cursor-not-allowed disabled:opacity-60"
 						>

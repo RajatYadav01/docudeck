@@ -9,11 +9,12 @@ describe("replaceUniqueText", () => {
 		};
 		const result = replaceUniqueText(document, "this draft", "the proposal");
 		expect(result.ok).toBe(true);
-		if (result.ok)
-			expect(result.document.content?.[0].content?.[0]).toMatchObject({
+		if (result.ok) {
+			expect(result.document.content?.[0]?.content?.[0]).toMatchObject({
 				text: "Please review the proposal",
 				marks: [{ type: "bold" }],
 			});
+		}
 	});
 
 	it("rejects missing or ambiguous phrases", () => {
