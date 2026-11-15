@@ -1,7 +1,7 @@
 # Build context must be the monorepo root so shared workspace packages are available.
-FROM node:22-alpine AS base
+FROM node:24-alpine AS base
 WORKDIR /repo
-RUN corepack enable && corepack prepare pnpm@10.21.0 --activate
+RUN corepack enable
 ENV NEXT_TELEMETRY_DISABLED=1
 
 # Full workspace dependencies are retained in this target because the database-init
@@ -11,7 +11,7 @@ COPY . .
 RUN pnpm install --no-frozen-lockfile
 
 FROM tools AS builder
-ARG DATABASE_URL=postgres://docudeck:docudeck_local_password@localhost:5432/docudeck
+ARG DATABASE_URL=postgres://docudeck:41532145@localhost:5432/docudeck
 ARG SESSION_SECRET=docudeck-build-only-session-secret-change-this
 ARG DOCUMENT_ENCRYPTION_KEY=0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef
 ENV DATABASE_URL=$DATABASE_URL
