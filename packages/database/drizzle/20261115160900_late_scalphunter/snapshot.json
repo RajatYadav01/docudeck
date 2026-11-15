@@ -1,0 +1,1945 @@
+{
+  "type": "base",
+  "version": "9",
+  "dialect": "postgres",
+  "id": "b0b90391-8f6f-41b2-91fa-6eff7ffa44a7",
+  "prevIds": [
+    "00000000-0000-0000-0000-000000000000"
+  ],
+  "footprints": [
+    {
+      "statementType": "create_enum",
+      "statementTarget": [
+        "enum",
+        "public",
+        "docudeck_share_role"
+      ],
+      "writes": [
+        "s|enum|public.docudeck_share_role",
+        "n|enum|public.docudeck_share_role",
+        "e|enum|public.docudeck_share_role",
+        "n|type|public.docudeck_share_role"
+      ],
+      "reads": [
+        "n|sch|public"
+      ]
+    },
+    {
+      "statementType": "create_enum",
+      "statementTarget": [
+        "enum",
+        "public",
+        "docudeck_suggestion_status"
+      ],
+      "writes": [
+        "s|enum|public.docudeck_suggestion_status",
+        "n|enum|public.docudeck_suggestion_status",
+        "e|enum|public.docudeck_suggestion_status",
+        "n|type|public.docudeck_suggestion_status"
+      ],
+      "reads": [
+        "n|sch|public"
+      ]
+    },
+    {
+      "statementType": "create_table",
+      "statementTarget": [
+        "table",
+        "public",
+        "document_comments"
+      ],
+      "writes": [
+        "s|tbl|public.document_comments",
+        "n|tbl|public.document_comments",
+        "e|tbl|public.document_comments",
+        "n|rel|public.document_comments",
+        "n|type|public.document_comments",
+        "n|rel|public.document_comments_pkey"
+      ],
+      "reads": [
+        "n|sch|public"
+      ]
+    },
+    {
+      "statementType": "create_table",
+      "statementTarget": [
+        "table",
+        "public",
+        "document_presence"
+      ],
+      "writes": [
+        "s|tbl|public.document_presence",
+        "n|tbl|public.document_presence",
+        "e|tbl|public.document_presence",
+        "n|rel|public.document_presence",
+        "n|type|public.document_presence",
+        "n|rel|public.document_presence_pkey"
+      ],
+      "reads": [
+        "n|sch|public"
+      ]
+    },
+    {
+      "statementType": "create_table",
+      "statementTarget": [
+        "table",
+        "public",
+        "document_shares"
+      ],
+      "writes": [
+        "s|tbl|public.document_shares",
+        "n|tbl|public.document_shares",
+        "e|tbl|public.document_shares",
+        "n|rel|public.document_shares",
+        "n|type|public.document_shares",
+        "n|rel|public.document_shares_pkey"
+      ],
+      "reads": [
+        "n|sch|public",
+        "n|enum|public.docudeck_share_role"
+      ]
+    },
+    {
+      "statementType": "create_table",
+      "statementTarget": [
+        "table",
+        "public",
+        "document_suggestions"
+      ],
+      "writes": [
+        "s|tbl|public.document_suggestions",
+        "n|tbl|public.document_suggestions",
+        "e|tbl|public.document_suggestions",
+        "n|rel|public.document_suggestions",
+        "n|type|public.document_suggestions",
+        "n|rel|public.document_suggestions_pkey"
+      ],
+      "reads": [
+        "n|sch|public",
+        "n|enum|public.docudeck_suggestion_status"
+      ]
+    },
+    {
+      "statementType": "create_table",
+      "statementTarget": [
+        "table",
+        "public",
+        "document_versions"
+      ],
+      "writes": [
+        "s|tbl|public.document_versions",
+        "n|tbl|public.document_versions",
+        "e|tbl|public.document_versions",
+        "n|rel|public.document_versions",
+        "n|type|public.document_versions",
+        "n|rel|public.document_versions_pkey"
+      ],
+      "reads": [
+        "n|sch|public"
+      ]
+    },
+    {
+      "statementType": "create_table",
+      "statementTarget": [
+        "table",
+        "public",
+        "documents"
+      ],
+      "writes": [
+        "s|tbl|public.documents",
+        "n|tbl|public.documents",
+        "e|tbl|public.documents",
+        "n|rel|public.documents",
+        "n|type|public.documents",
+        "n|rel|public.documents_pkey"
+      ],
+      "reads": [
+        "n|sch|public"
+      ]
+    },
+    {
+      "statementType": "create_table",
+      "statementTarget": [
+        "table",
+        "public",
+        "users"
+      ],
+      "writes": [
+        "s|tbl|public.users",
+        "n|tbl|public.users",
+        "e|tbl|public.users",
+        "n|rel|public.users",
+        "n|type|public.users",
+        "n|rel|public.users_pkey"
+      ],
+      "reads": [
+        "n|sch|public"
+      ]
+    },
+    {
+      "statementType": "create_index",
+      "statementTarget": [
+        "index",
+        "public",
+        "document_comments",
+        "document_comments_document_created_idx"
+      ],
+      "writes": [
+        "s|idx|public.document_comments_document_created_idx",
+        "n|idx|public.document_comments_document_created_idx",
+        "e|idx|public.document_comments_document_created_idx",
+        "n|rel|public.document_comments_document_created_idx"
+      ],
+      "reads": [
+        "n|tbl|public.document_comments",
+        "n|sch|public",
+        "n|col|public.document_comments.document_id",
+        "n|col|public.document_comments.created_at"
+      ]
+    },
+    {
+      "statementType": "create_index",
+      "statementTarget": [
+        "index",
+        "public",
+        "document_presence",
+        "document_presence_document_user_uidx"
+      ],
+      "writes": [
+        "s|idx|public.document_presence_document_user_uidx",
+        "n|idx|public.document_presence_document_user_uidx",
+        "e|idx|public.document_presence_document_user_uidx",
+        "n|rel|public.document_presence_document_user_uidx"
+      ],
+      "reads": [
+        "n|tbl|public.document_presence",
+        "n|sch|public",
+        "n|col|public.document_presence.document_id",
+        "n|col|public.document_presence.user_id"
+      ]
+    },
+    {
+      "statementType": "create_index",
+      "statementTarget": [
+        "index",
+        "public",
+        "document_presence",
+        "document_presence_last_seen_idx"
+      ],
+      "writes": [
+        "s|idx|public.document_presence_last_seen_idx",
+        "n|idx|public.document_presence_last_seen_idx",
+        "e|idx|public.document_presence_last_seen_idx",
+        "n|rel|public.document_presence_last_seen_idx"
+      ],
+      "reads": [
+        "n|tbl|public.document_presence",
+        "n|sch|public",
+        "n|col|public.document_presence.document_id",
+        "n|col|public.document_presence.last_seen_at"
+      ]
+    },
+    {
+      "statementType": "create_index",
+      "statementTarget": [
+        "index",
+        "public",
+        "document_shares",
+        "document_shares_document_user_uidx"
+      ],
+      "writes": [
+        "s|idx|public.document_shares_document_user_uidx",
+        "n|idx|public.document_shares_document_user_uidx",
+        "e|idx|public.document_shares_document_user_uidx",
+        "n|rel|public.document_shares_document_user_uidx"
+      ],
+      "reads": [
+        "n|tbl|public.document_shares",
+        "n|sch|public",
+        "n|col|public.document_shares.document_id",
+        "n|col|public.document_shares.user_id"
+      ]
+    },
+    {
+      "statementType": "create_index",
+      "statementTarget": [
+        "index",
+        "public",
+        "document_shares",
+        "document_shares_user_idx"
+      ],
+      "writes": [
+        "s|idx|public.document_shares_user_idx",
+        "n|idx|public.document_shares_user_idx",
+        "e|idx|public.document_shares_user_idx",
+        "n|rel|public.document_shares_user_idx"
+      ],
+      "reads": [
+        "n|tbl|public.document_shares",
+        "n|sch|public",
+        "n|col|public.document_shares.user_id"
+      ]
+    },
+    {
+      "statementType": "create_index",
+      "statementTarget": [
+        "index",
+        "public",
+        "document_suggestions",
+        "document_suggestions_document_status_idx"
+      ],
+      "writes": [
+        "s|idx|public.document_suggestions_document_status_idx",
+        "n|idx|public.document_suggestions_document_status_idx",
+        "e|idx|public.document_suggestions_document_status_idx",
+        "n|rel|public.document_suggestions_document_status_idx"
+      ],
+      "reads": [
+        "n|tbl|public.document_suggestions",
+        "n|sch|public",
+        "n|col|public.document_suggestions.document_id",
+        "n|col|public.document_suggestions.status"
+      ]
+    },
+    {
+      "statementType": "create_index",
+      "statementTarget": [
+        "index",
+        "public",
+        "document_versions",
+        "document_versions_document_version_uidx"
+      ],
+      "writes": [
+        "s|idx|public.document_versions_document_version_uidx",
+        "n|idx|public.document_versions_document_version_uidx",
+        "e|idx|public.document_versions_document_version_uidx",
+        "n|rel|public.document_versions_document_version_uidx"
+      ],
+      "reads": [
+        "n|tbl|public.document_versions",
+        "n|sch|public",
+        "n|col|public.document_versions.document_id",
+        "n|col|public.document_versions.version_number"
+      ]
+    },
+    {
+      "statementType": "create_index",
+      "statementTarget": [
+        "index",
+        "public",
+        "document_versions",
+        "document_versions_document_created_idx"
+      ],
+      "writes": [
+        "s|idx|public.document_versions_document_created_idx",
+        "n|idx|public.document_versions_document_created_idx",
+        "e|idx|public.document_versions_document_created_idx",
+        "n|rel|public.document_versions_document_created_idx"
+      ],
+      "reads": [
+        "n|tbl|public.document_versions",
+        "n|sch|public",
+        "n|col|public.document_versions.document_id",
+        "n|col|public.document_versions.created_at"
+      ]
+    },
+    {
+      "statementType": "create_index",
+      "statementTarget": [
+        "index",
+        "public",
+        "documents",
+        "documents_owner_updated_idx"
+      ],
+      "writes": [
+        "s|idx|public.documents_owner_updated_idx",
+        "n|idx|public.documents_owner_updated_idx",
+        "e|idx|public.documents_owner_updated_idx",
+        "n|rel|public.documents_owner_updated_idx"
+      ],
+      "reads": [
+        "n|tbl|public.documents",
+        "n|sch|public",
+        "n|col|public.documents.owner_id",
+        "n|col|public.documents.updated_at"
+      ]
+    },
+    {
+      "statementType": "create_index",
+      "statementTarget": [
+        "index",
+        "public",
+        "users",
+        "users_email_uidx"
+      ],
+      "writes": [
+        "s|idx|public.users_email_uidx",
+        "n|idx|public.users_email_uidx",
+        "e|idx|public.users_email_uidx",
+        "n|rel|public.users_email_uidx"
+      ],
+      "reads": [
+        "n|tbl|public.users",
+        "n|sch|public",
+        "n|col|public.users.email"
+      ]
+    },
+    {
+      "statementType": "create_fk",
+      "statementTarget": [
+        "table",
+        "public",
+        "document_comments"
+      ],
+      "writes": [
+        "s|fk|public.document_comments.document_comments_document_id_documents_id_fkey",
+        "n|fk|public.document_comments.document_comments_document_id_documents_id_fkey",
+        "e|fk|public.document_comments.document_comments_document_id_documents_id_fkey",
+        "n|con|public.document_comments.document_comments_document_id_documents_id_fkey"
+      ],
+      "reads": [
+        "n|tbl|public.document_comments",
+        "n|sch|public",
+        "n|tbl|public.documents",
+        "n|sch|public",
+        "n|col|public.document_comments.document_id",
+        "n|col|public.documents.id",
+        "e|uniqueness|public.documents.id"
+      ]
+    },
+    {
+      "statementType": "create_fk",
+      "statementTarget": [
+        "table",
+        "public",
+        "document_comments"
+      ],
+      "writes": [
+        "s|fk|public.document_comments.document_comments_author_id_users_id_fkey",
+        "n|fk|public.document_comments.document_comments_author_id_users_id_fkey",
+        "e|fk|public.document_comments.document_comments_author_id_users_id_fkey",
+        "n|con|public.document_comments.document_comments_author_id_users_id_fkey"
+      ],
+      "reads": [
+        "n|tbl|public.document_comments",
+        "n|sch|public",
+        "n|tbl|public.users",
+        "n|sch|public",
+        "n|col|public.document_comments.author_id",
+        "n|col|public.users.id",
+        "e|uniqueness|public.users.id"
+      ]
+    },
+    {
+      "statementType": "create_fk",
+      "statementTarget": [
+        "table",
+        "public",
+        "document_comments"
+      ],
+      "writes": [
+        "s|fk|public.document_comments.document_comments_parent_comment_id_document_comments_id_fkey",
+        "n|fk|public.document_comments.document_comments_parent_comment_id_document_comments_id_fkey",
+        "e|fk|public.document_comments.document_comments_parent_comment_id_document_comments_id_fkey",
+        "n|con|public.document_comments.document_comments_parent_comment_id_document_comments_id_fkey"
+      ],
+      "reads": [
+        "n|tbl|public.document_comments",
+        "n|sch|public",
+        "n|tbl|public.document_comments",
+        "n|sch|public",
+        "n|col|public.document_comments.parent_comment_id",
+        "n|col|public.document_comments.id",
+        "e|uniqueness|public.document_comments.id"
+      ]
+    },
+    {
+      "statementType": "create_fk",
+      "statementTarget": [
+        "table",
+        "public",
+        "document_presence"
+      ],
+      "writes": [
+        "s|fk|public.document_presence.document_presence_document_id_documents_id_fkey",
+        "n|fk|public.document_presence.document_presence_document_id_documents_id_fkey",
+        "e|fk|public.document_presence.document_presence_document_id_documents_id_fkey",
+        "n|con|public.document_presence.document_presence_document_id_documents_id_fkey"
+      ],
+      "reads": [
+        "n|tbl|public.document_presence",
+        "n|sch|public",
+        "n|tbl|public.documents",
+        "n|sch|public",
+        "n|col|public.document_presence.document_id",
+        "n|col|public.documents.id",
+        "e|uniqueness|public.documents.id"
+      ]
+    },
+    {
+      "statementType": "create_fk",
+      "statementTarget": [
+        "table",
+        "public",
+        "document_presence"
+      ],
+      "writes": [
+        "s|fk|public.document_presence.document_presence_user_id_users_id_fkey",
+        "n|fk|public.document_presence.document_presence_user_id_users_id_fkey",
+        "e|fk|public.document_presence.document_presence_user_id_users_id_fkey",
+        "n|con|public.document_presence.document_presence_user_id_users_id_fkey"
+      ],
+      "reads": [
+        "n|tbl|public.document_presence",
+        "n|sch|public",
+        "n|tbl|public.users",
+        "n|sch|public",
+        "n|col|public.document_presence.user_id",
+        "n|col|public.users.id",
+        "e|uniqueness|public.users.id"
+      ]
+    },
+    {
+      "statementType": "create_fk",
+      "statementTarget": [
+        "table",
+        "public",
+        "document_shares"
+      ],
+      "writes": [
+        "s|fk|public.document_shares.document_shares_document_id_documents_id_fkey",
+        "n|fk|public.document_shares.document_shares_document_id_documents_id_fkey",
+        "e|fk|public.document_shares.document_shares_document_id_documents_id_fkey",
+        "n|con|public.document_shares.document_shares_document_id_documents_id_fkey"
+      ],
+      "reads": [
+        "n|tbl|public.document_shares",
+        "n|sch|public",
+        "n|tbl|public.documents",
+        "n|sch|public",
+        "n|col|public.document_shares.document_id",
+        "n|col|public.documents.id",
+        "e|uniqueness|public.documents.id"
+      ]
+    },
+    {
+      "statementType": "create_fk",
+      "statementTarget": [
+        "table",
+        "public",
+        "document_shares"
+      ],
+      "writes": [
+        "s|fk|public.document_shares.document_shares_user_id_users_id_fkey",
+        "n|fk|public.document_shares.document_shares_user_id_users_id_fkey",
+        "e|fk|public.document_shares.document_shares_user_id_users_id_fkey",
+        "n|con|public.document_shares.document_shares_user_id_users_id_fkey"
+      ],
+      "reads": [
+        "n|tbl|public.document_shares",
+        "n|sch|public",
+        "n|tbl|public.users",
+        "n|sch|public",
+        "n|col|public.document_shares.user_id",
+        "n|col|public.users.id",
+        "e|uniqueness|public.users.id"
+      ]
+    },
+    {
+      "statementType": "create_fk",
+      "statementTarget": [
+        "table",
+        "public",
+        "document_shares"
+      ],
+      "writes": [
+        "s|fk|public.document_shares.document_shares_created_by_users_id_fkey",
+        "n|fk|public.document_shares.document_shares_created_by_users_id_fkey",
+        "e|fk|public.document_shares.document_shares_created_by_users_id_fkey",
+        "n|con|public.document_shares.document_shares_created_by_users_id_fkey"
+      ],
+      "reads": [
+        "n|tbl|public.document_shares",
+        "n|sch|public",
+        "n|tbl|public.users",
+        "n|sch|public",
+        "n|col|public.document_shares.created_by",
+        "n|col|public.users.id",
+        "e|uniqueness|public.users.id"
+      ]
+    },
+    {
+      "statementType": "create_fk",
+      "statementTarget": [
+        "table",
+        "public",
+        "document_suggestions"
+      ],
+      "writes": [
+        "s|fk|public.document_suggestions.document_suggestions_document_id_documents_id_fkey",
+        "n|fk|public.document_suggestions.document_suggestions_document_id_documents_id_fkey",
+        "e|fk|public.document_suggestions.document_suggestions_document_id_documents_id_fkey",
+        "n|con|public.document_suggestions.document_suggestions_document_id_documents_id_fkey"
+      ],
+      "reads": [
+        "n|tbl|public.document_suggestions",
+        "n|sch|public",
+        "n|tbl|public.documents",
+        "n|sch|public",
+        "n|col|public.document_suggestions.document_id",
+        "n|col|public.documents.id",
+        "e|uniqueness|public.documents.id"
+      ]
+    },
+    {
+      "statementType": "create_fk",
+      "statementTarget": [
+        "table",
+        "public",
+        "document_suggestions"
+      ],
+      "writes": [
+        "s|fk|public.document_suggestions.document_suggestions_author_id_users_id_fkey",
+        "n|fk|public.document_suggestions.document_suggestions_author_id_users_id_fkey",
+        "e|fk|public.document_suggestions.document_suggestions_author_id_users_id_fkey",
+        "n|con|public.document_suggestions.document_suggestions_author_id_users_id_fkey"
+      ],
+      "reads": [
+        "n|tbl|public.document_suggestions",
+        "n|sch|public",
+        "n|tbl|public.users",
+        "n|sch|public",
+        "n|col|public.document_suggestions.author_id",
+        "n|col|public.users.id",
+        "e|uniqueness|public.users.id"
+      ]
+    },
+    {
+      "statementType": "create_fk",
+      "statementTarget": [
+        "table",
+        "public",
+        "document_versions"
+      ],
+      "writes": [
+        "s|fk|public.document_versions.document_versions_document_id_documents_id_fkey",
+        "n|fk|public.document_versions.document_versions_document_id_documents_id_fkey",
+        "e|fk|public.document_versions.document_versions_document_id_documents_id_fkey",
+        "n|con|public.document_versions.document_versions_document_id_documents_id_fkey"
+      ],
+      "reads": [
+        "n|tbl|public.document_versions",
+        "n|sch|public",
+        "n|tbl|public.documents",
+        "n|sch|public",
+        "n|col|public.document_versions.document_id",
+        "n|col|public.documents.id",
+        "e|uniqueness|public.documents.id"
+      ]
+    },
+    {
+      "statementType": "create_fk",
+      "statementTarget": [
+        "table",
+        "public",
+        "document_versions"
+      ],
+      "writes": [
+        "s|fk|public.document_versions.document_versions_created_by_users_id_fkey",
+        "n|fk|public.document_versions.document_versions_created_by_users_id_fkey",
+        "e|fk|public.document_versions.document_versions_created_by_users_id_fkey",
+        "n|con|public.document_versions.document_versions_created_by_users_id_fkey"
+      ],
+      "reads": [
+        "n|tbl|public.document_versions",
+        "n|sch|public",
+        "n|tbl|public.users",
+        "n|sch|public",
+        "n|col|public.document_versions.created_by",
+        "n|col|public.users.id",
+        "e|uniqueness|public.users.id"
+      ]
+    },
+    {
+      "statementType": "create_fk",
+      "statementTarget": [
+        "table",
+        "public",
+        "documents"
+      ],
+      "writes": [
+        "s|fk|public.documents.documents_owner_id_users_id_fkey",
+        "n|fk|public.documents.documents_owner_id_users_id_fkey",
+        "e|fk|public.documents.documents_owner_id_users_id_fkey",
+        "n|con|public.documents.documents_owner_id_users_id_fkey"
+      ],
+      "reads": [
+        "n|tbl|public.documents",
+        "n|sch|public",
+        "n|tbl|public.users",
+        "n|sch|public",
+        "n|col|public.documents.owner_id",
+        "n|col|public.users.id",
+        "e|uniqueness|public.users.id"
+      ]
+    }
+  ],
+  "ddl": [
+    {
+      "schema": "public",
+      "name": "document_comments",
+      "isRlsEnabled": false,
+      "entityType": "tables"
+    },
+    {
+      "schema": "public",
+      "name": "document_presence",
+      "isRlsEnabled": false,
+      "entityType": "tables"
+    },
+    {
+      "schema": "public",
+      "name": "document_shares",
+      "isRlsEnabled": false,
+      "entityType": "tables"
+    },
+    {
+      "schema": "public",
+      "name": "document_suggestions",
+      "isRlsEnabled": false,
+      "entityType": "tables"
+    },
+    {
+      "schema": "public",
+      "name": "document_versions",
+      "isRlsEnabled": false,
+      "entityType": "tables"
+    },
+    {
+      "schema": "public",
+      "name": "documents",
+      "isRlsEnabled": false,
+      "entityType": "tables"
+    },
+    {
+      "schema": "public",
+      "name": "users",
+      "isRlsEnabled": false,
+      "entityType": "tables"
+    },
+    {
+      "schema": "public",
+      "name": "docudeck_share_role",
+      "values": [
+        "editor",
+        "commenter",
+        "viewer"
+      ],
+      "entityType": "enums"
+    },
+    {
+      "schema": "public",
+      "name": "docudeck_suggestion_status",
+      "values": [
+        "pending",
+        "accepted",
+        "rejected"
+      ],
+      "entityType": "enums"
+    },
+    {
+      "schema": "public",
+      "table": "document_comments",
+      "name": "id",
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "gen_random_uuid()",
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "document_comments",
+      "name": "document_id",
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "document_comments",
+      "name": "author_id",
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "document_comments",
+      "name": "parent_comment_id",
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "document_comments",
+      "name": "body_ciphertext",
+      "type": "text",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "document_comments",
+      "name": "anchor_data",
+      "type": "jsonb",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "document_comments",
+      "name": "is_resolved",
+      "type": "boolean",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "false",
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "document_comments",
+      "name": "created_at",
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "document_comments",
+      "name": "updated_at",
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "document_presence",
+      "name": "id",
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "gen_random_uuid()",
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "document_presence",
+      "name": "document_id",
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "document_presence",
+      "name": "user_id",
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "document_presence",
+      "name": "last_seen_at",
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "document_shares",
+      "name": "id",
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "gen_random_uuid()",
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "document_shares",
+      "name": "document_id",
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "document_shares",
+      "name": "user_id",
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "document_shares",
+      "name": "role",
+      "type": "docudeck_share_role",
+      "typeSchema": "public",
+      "notNull": true,
+      "dimensions": 0,
+      "default": "'viewer'",
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "document_shares",
+      "name": "created_by",
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "document_shares",
+      "name": "created_at",
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "document_suggestions",
+      "name": "id",
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "gen_random_uuid()",
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "document_suggestions",
+      "name": "document_id",
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "document_suggestions",
+      "name": "author_id",
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "document_suggestions",
+      "name": "original_ciphertext",
+      "type": "text",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "document_suggestions",
+      "name": "proposed_ciphertext",
+      "type": "text",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "document_suggestions",
+      "name": "anchor_data",
+      "type": "jsonb",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "document_suggestions",
+      "name": "status",
+      "type": "docudeck_suggestion_status",
+      "typeSchema": "public",
+      "notNull": true,
+      "dimensions": 0,
+      "default": "'pending'",
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "document_suggestions",
+      "name": "created_at",
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "document_suggestions",
+      "name": "resolved_at",
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "document_versions",
+      "name": "id",
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "gen_random_uuid()",
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "document_versions",
+      "name": "document_id",
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "document_versions",
+      "name": "version_number",
+      "type": "integer",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "document_versions",
+      "name": "title",
+      "type": "varchar(200)",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "document_versions",
+      "name": "content_ciphertext",
+      "type": "text",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "document_versions",
+      "name": "encryption_version",
+      "type": "integer",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "1",
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "document_versions",
+      "name": "created_by",
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "document_versions",
+      "name": "created_at",
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "documents",
+      "name": "id",
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "gen_random_uuid()",
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "documents",
+      "name": "title",
+      "type": "varchar(200)",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "'Untitled Document'",
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "documents",
+      "name": "content_ciphertext",
+      "type": "text",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "documents",
+      "name": "encryption_version",
+      "type": "integer",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "1",
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "documents",
+      "name": "revision",
+      "type": "integer",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "0",
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "documents",
+      "name": "owner_id",
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "documents",
+      "name": "created_at",
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "documents",
+      "name": "updated_at",
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "users",
+      "name": "id",
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "gen_random_uuid()",
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "users",
+      "name": "name",
+      "type": "varchar(120)",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "users",
+      "name": "email",
+      "type": "varchar(255)",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "users",
+      "name": "password_hash",
+      "type": "text",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "users",
+      "name": "created_at",
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "document_comments",
+      "name": "document_comments_document_created_idx",
+      "nameExplicit": true,
+      "columns": [
+        {
+          "value": "document_id",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        },
+        {
+          "value": "created_at",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "entityType": "indexes"
+    },
+    {
+      "schema": "public",
+      "table": "document_presence",
+      "name": "document_presence_document_user_uidx",
+      "nameExplicit": true,
+      "columns": [
+        {
+          "value": "document_id",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        },
+        {
+          "value": "user_id",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        }
+      ],
+      "isUnique": true,
+      "where": null,
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "entityType": "indexes"
+    },
+    {
+      "schema": "public",
+      "table": "document_presence",
+      "name": "document_presence_last_seen_idx",
+      "nameExplicit": true,
+      "columns": [
+        {
+          "value": "document_id",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        },
+        {
+          "value": "last_seen_at",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "entityType": "indexes"
+    },
+    {
+      "schema": "public",
+      "table": "document_shares",
+      "name": "document_shares_document_user_uidx",
+      "nameExplicit": true,
+      "columns": [
+        {
+          "value": "document_id",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        },
+        {
+          "value": "user_id",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        }
+      ],
+      "isUnique": true,
+      "where": null,
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "entityType": "indexes"
+    },
+    {
+      "schema": "public",
+      "table": "document_shares",
+      "name": "document_shares_user_idx",
+      "nameExplicit": true,
+      "columns": [
+        {
+          "value": "user_id",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "entityType": "indexes"
+    },
+    {
+      "schema": "public",
+      "table": "document_suggestions",
+      "name": "document_suggestions_document_status_idx",
+      "nameExplicit": true,
+      "columns": [
+        {
+          "value": "document_id",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        },
+        {
+          "value": "status",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "entityType": "indexes"
+    },
+    {
+      "schema": "public",
+      "table": "document_versions",
+      "name": "document_versions_document_version_uidx",
+      "nameExplicit": true,
+      "columns": [
+        {
+          "value": "document_id",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        },
+        {
+          "value": "version_number",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        }
+      ],
+      "isUnique": true,
+      "where": null,
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "entityType": "indexes"
+    },
+    {
+      "schema": "public",
+      "table": "document_versions",
+      "name": "document_versions_document_created_idx",
+      "nameExplicit": true,
+      "columns": [
+        {
+          "value": "document_id",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        },
+        {
+          "value": "created_at",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "entityType": "indexes"
+    },
+    {
+      "schema": "public",
+      "table": "documents",
+      "name": "documents_owner_updated_idx",
+      "nameExplicit": true,
+      "columns": [
+        {
+          "value": "owner_id",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        },
+        {
+          "value": "updated_at",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "entityType": "indexes"
+    },
+    {
+      "schema": "public",
+      "table": "users",
+      "name": "users_email_uidx",
+      "nameExplicit": true,
+      "columns": [
+        {
+          "value": "email",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        }
+      ],
+      "isUnique": true,
+      "where": null,
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "entityType": "indexes"
+    },
+    {
+      "schema": "public",
+      "table": "document_comments",
+      "name": "document_comments_document_id_documents_id_fkey",
+      "nameExplicit": false,
+      "columns": [
+        "document_id"
+      ],
+      "schemaTo": "public",
+      "tableTo": "documents",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "entityType": "fks"
+    },
+    {
+      "schema": "public",
+      "table": "document_comments",
+      "name": "document_comments_author_id_users_id_fkey",
+      "nameExplicit": false,
+      "columns": [
+        "author_id"
+      ],
+      "schemaTo": "public",
+      "tableTo": "users",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "RESTRICT",
+      "entityType": "fks"
+    },
+    {
+      "schema": "public",
+      "table": "document_comments",
+      "name": "document_comments_parent_comment_id_document_comments_id_fkey",
+      "nameExplicit": false,
+      "columns": [
+        "parent_comment_id"
+      ],
+      "schemaTo": "public",
+      "tableTo": "document_comments",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "entityType": "fks"
+    },
+    {
+      "schema": "public",
+      "table": "document_presence",
+      "name": "document_presence_document_id_documents_id_fkey",
+      "nameExplicit": false,
+      "columns": [
+        "document_id"
+      ],
+      "schemaTo": "public",
+      "tableTo": "documents",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "entityType": "fks"
+    },
+    {
+      "schema": "public",
+      "table": "document_presence",
+      "name": "document_presence_user_id_users_id_fkey",
+      "nameExplicit": false,
+      "columns": [
+        "user_id"
+      ],
+      "schemaTo": "public",
+      "tableTo": "users",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "entityType": "fks"
+    },
+    {
+      "schema": "public",
+      "table": "document_shares",
+      "name": "document_shares_document_id_documents_id_fkey",
+      "nameExplicit": false,
+      "columns": [
+        "document_id"
+      ],
+      "schemaTo": "public",
+      "tableTo": "documents",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "entityType": "fks"
+    },
+    {
+      "schema": "public",
+      "table": "document_shares",
+      "name": "document_shares_user_id_users_id_fkey",
+      "nameExplicit": false,
+      "columns": [
+        "user_id"
+      ],
+      "schemaTo": "public",
+      "tableTo": "users",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "entityType": "fks"
+    },
+    {
+      "schema": "public",
+      "table": "document_shares",
+      "name": "document_shares_created_by_users_id_fkey",
+      "nameExplicit": false,
+      "columns": [
+        "created_by"
+      ],
+      "schemaTo": "public",
+      "tableTo": "users",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "RESTRICT",
+      "entityType": "fks"
+    },
+    {
+      "schema": "public",
+      "table": "document_suggestions",
+      "name": "document_suggestions_document_id_documents_id_fkey",
+      "nameExplicit": false,
+      "columns": [
+        "document_id"
+      ],
+      "schemaTo": "public",
+      "tableTo": "documents",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "entityType": "fks"
+    },
+    {
+      "schema": "public",
+      "table": "document_suggestions",
+      "name": "document_suggestions_author_id_users_id_fkey",
+      "nameExplicit": false,
+      "columns": [
+        "author_id"
+      ],
+      "schemaTo": "public",
+      "tableTo": "users",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "RESTRICT",
+      "entityType": "fks"
+    },
+    {
+      "schema": "public",
+      "table": "document_versions",
+      "name": "document_versions_document_id_documents_id_fkey",
+      "nameExplicit": false,
+      "columns": [
+        "document_id"
+      ],
+      "schemaTo": "public",
+      "tableTo": "documents",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "entityType": "fks"
+    },
+    {
+      "schema": "public",
+      "table": "document_versions",
+      "name": "document_versions_created_by_users_id_fkey",
+      "nameExplicit": false,
+      "columns": [
+        "created_by"
+      ],
+      "schemaTo": "public",
+      "tableTo": "users",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "RESTRICT",
+      "entityType": "fks"
+    },
+    {
+      "schema": "public",
+      "table": "documents",
+      "name": "documents_owner_id_users_id_fkey",
+      "nameExplicit": false,
+      "columns": [
+        "owner_id"
+      ],
+      "schemaTo": "public",
+      "tableTo": "users",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "entityType": "fks"
+    },
+    {
+      "schema": "public",
+      "table": "document_comments",
+      "name": "document_comments_pkey",
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": false,
+      "entityType": "pks"
+    },
+    {
+      "schema": "public",
+      "table": "document_presence",
+      "name": "document_presence_pkey",
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": false,
+      "entityType": "pks"
+    },
+    {
+      "schema": "public",
+      "table": "document_shares",
+      "name": "document_shares_pkey",
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": false,
+      "entityType": "pks"
+    },
+    {
+      "schema": "public",
+      "table": "document_suggestions",
+      "name": "document_suggestions_pkey",
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": false,
+      "entityType": "pks"
+    },
+    {
+      "schema": "public",
+      "table": "document_versions",
+      "name": "document_versions_pkey",
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": false,
+      "entityType": "pks"
+    },
+    {
+      "schema": "public",
+      "table": "documents",
+      "name": "documents_pkey",
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": false,
+      "entityType": "pks"
+    },
+    {
+      "schema": "public",
+      "table": "users",
+      "name": "users_pkey",
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": false,
+      "entityType": "pks"
+    }
+  ]
+}

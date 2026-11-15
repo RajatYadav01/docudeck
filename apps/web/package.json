@@ -1,0 +1,48 @@
+{
+	"name": "@docudeck/web",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"dev": "next dev",
+		"build": "next build",
+		"start": "next start --hostname 0.0.0.0",
+		"lint": "biome check src",
+		"typecheck": "tsc --noEmit",
+		"test": "vitest run",
+		"test:watch": "vitest"
+	},
+	"dependencies": {
+		"@docudeck/config": "workspace:*",
+		"@docudeck/constants": "workspace:*",
+		"@docudeck/database": "workspace:*",
+		"@docudeck/schemas": "workspace:*",
+		"@docudeck/types": "workspace:*",
+		"@tiptap/extension-underline": "^3.34.0",
+		"@tiptap/react": "^3.34.0",
+		"@tiptap/starter-kit": "^3.34.0",
+		"bcryptjs": "^3.0.3",
+		"clsx": "^2.1.1",
+		"dotenv": "^18.0.10",
+        "drizzle-orm": "^1.0.0-rc.5",
+		"jose": "^6.2.17",
+		"lucide-react": "^1.73.0",
+		"next": "^16.4.6",
+		"postgres": "^4.1.1",
+		"react": "^19.3.1",
+		"react-dom": "^19.3.1",
+		"tailwind-merge": "^3.7.0",
+		"zod": "^4.6.7"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "2.5.14",
+		"@docudeck/tsconfig": "workspace:*",
+		"@tailwindcss/postcss": "^4",
+		"@testing-library/jest-dom": "^7.0.1",
+		"@testing-library/react": "^16.3.3",
+		"@types/node": "^20",
+		"@types/react": "^19",
+		"@types/react-dom": "^19",
+		"babel-plugin-react-compiler": "1.0.0",
+		"tailwindcss": "^4"
+	}
+}

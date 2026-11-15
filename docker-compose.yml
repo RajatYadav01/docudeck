@@ -1,0 +1,80 @@
+services:
+  docudeck-database:
+    image: postgres:18-alpine
+    container_name: docudeck-database
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-docudeck}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-41532145}
+      POSTGRES_DB: ${POSTGRES_DB:-docudeck}
+    ports:
+      - "5432:5432"
+    volumes:
+      - docudeck-database-data:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    networks:
+      - docudeck-network
+
+  # Uses the web app's Dockerfile tooling target to run migrations and seed demo users.
+  docudeck-database-init:
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
+      target: tools
+    container_name: docudeck-database-init
+    restart: "no"
+    environment:
+      NODE_ENV: development
+      DATABASE_URL: postgres://${POSTGRES_USER:-docudeck}:${POSTGRES_PASSWORD:-41532145}@docudeck-database:5432/${POSTGRES_DB:-docudeck}
+      SESSION_SECRET: ${SESSION_SECRET:-docudeck-local-only-session-secret-change-before-use}
+      DOCUMENT_ENCRYPTION_KEY: ${DOCUMENT_ENCRYPTION_KEY:-0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef}
+      NEXT_PUBLIC_APP_URL: ${NEXT_PUBLIC_APP_URL:-http://localhost:3000}
+    command:
+      - sh
+      - -c
+      - pnpm db:migrate && pnpm db:seed
+    depends_on:
+      docudeck-database:
+        condition: service_healthy
+    networks:
+      - docudeck-network
+
+  docudeck-web:
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
+      target: runner
+      args:
+        DATABASE_URL: postgres://${POSTGRES_USER:-docudeck}:${POSTGRES_PASSWORD:-41532145}@docudeck-database:5432/${POSTGRES_DB:-docudeck}
+        SESSION_SECRET: ${SESSION_SECRET:-docudeck-local-only-session-secret-change-before-use}
+        DOCUMENT_ENCRYPTION_KEY: ${DOCUMENT_ENCRYPTION_KEY:-0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef}
+    container_name: docudeck-web
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      DATABASE_URL: postgres://${POSTGRES_USER:-docudeck}:${POSTGRES_PASSWORD:-41532145}@docudeck-database:5432/${POSTGRES_DB:-docudeck}
+      SESSION_SECRET: ${SESSION_SECRET:-docudeck-local-only-session-secret-change-before-use}
+      DOCUMENT_ENCRYPTION_KEY: ${DOCUMENT_ENCRYPTION_KEY:-0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef}
+      NEXT_PUBLIC_APP_URL: ${NEXT_PUBLIC_APP_URL:-http://localhost:3000}
+      PORT: 3000
+      HOSTNAME: 0.0.0.0
+    ports:
+      - "3000:3000"
+    depends_on:
+      docudeck-database-init:
+        condition: service_completed_successfully
+    networks:
+      - docudeck-network
+
+volumes:
+  docudeck-database-data:
+    name: docudeck-database-data
+
+networks:
+  docudeck-network:
+    name: docudeck-network
+    driver: bridge

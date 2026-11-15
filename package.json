@@ -1,0 +1,50 @@
+{
+	"name": "docudeck",
+	"private": true,
+	"version": "0.0.0",
+	"scripts": {
+		"format": "turbo run format",
+		"lint": "turbo run lint",
+		"lint:report": "turbo run lint:report",
+        "build:types": "turbo run build:types",
+		"typecheck": "turbo run typecheck",
+		"test": "turbo run test",
+		"test:unit": "turbo run test:unit",
+		"test:integration": "turbo run test:integration",
+		"test:web": "turbo run test --filter=@docudeck/web",
+		"test:web:unit": "turbo run test:unit --filter=@docudeck/web",
+		"test:web:integration": "turbo run test:integration --filter=@docudeck/web",
+		"test:watch": "turbo run test:watch",
+		"test:coverage": "turbo run test:coverage",
+		"test:e2e": "pnpm --filter @docudeck/e2e-tests e2e",
+		"test:e2e:ui": "turbo run test:e2e -- --ui",
+		"db:generate": "pnpm --filter @docudeck/database db:generate",
+		"db:migrate": "pnpm --filter @docudeck/database db:migrate",
+		"db:seed": "pnpm --filter @docudeck/database db:seed",
+		"db:studio": "pnpm --filter @docudeck/database db:studio",
+		"dev": "turbo run dev --parallel",
+		"dev:web": "turbo run dev --filter=@docudeck/web -- --hostname 0.0.0.0",
+		"build": "turbo build",
+		"conflicts": "syncpack lint --dependency-types prod,dev",
+		"conflicts:fix": "syncpack fix --dependency-types prod,dev",
+		"prepare": "husky",
+		"lint-staged": "lint-staged"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "2.5.14",
+		"@types/node": "^25.9.1",
+		"@types/react": "^19.1.13",
+		"@types/react-dom": "^19.1.9",
+		"husky": "^9.1.7",
+		"lint-staged": "^17.0.5",
+		"syncpack": "^15.3.1",
+		"tsx": "^4.23.15",
+		"turbo": "^2.9.14",
+		"typescript": "^7.0.2",
+		"vitest": "^5.0.5"
+	},
+	"packageManager": "pnpm@12.5.1+sha512.e3f305bc784a2bc89f5ad3b6138889470fae8d2af5f36b61216ec91c2c3d64089775f9de38aac331044ea40f245cb0d5666392dfdf65824e1907ef6a2c62de5f",
+	"engines": {
+		"node": ">=22"
+	}
+}
