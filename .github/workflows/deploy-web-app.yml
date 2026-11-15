@@ -76,8 +76,9 @@ jobs:
 
       - name: Seed sample production data
         env:
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
           NODE_ENV: production
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          DOCUMENT_ENCRYPTION_KEY: ${{ secrets.DOCUMENT_ENCRYPTION_KEY }}
           ALLOW_DEMO_SEED: ${{ secrets.ALLOW_DEMO_SEED }}
         run: pnpm db:seed
 
