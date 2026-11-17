@@ -8,7 +8,7 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-41532145}
       POSTGRES_DB: ${POSTGRES_DB:-docudeck}
     ports:
-      - "5432:5432"
+      - "5440:5432"
     volumes:
       - docudeck-database-data:/var/lib/postgresql
     healthcheck:
@@ -32,7 +32,7 @@ services:
       DATABASE_URL: postgres://${POSTGRES_USER:-docudeck}:${POSTGRES_PASSWORD:-41532145}@docudeck-database:5432/${POSTGRES_DB:-docudeck}
       SESSION_SECRET: ${SESSION_SECRET:-docudeck-local-only-session-secret-change-before-use}
       DOCUMENT_ENCRYPTION_KEY: ${DOCUMENT_ENCRYPTION_KEY:-0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef}
-      NEXT_PUBLIC_APP_URL: ${NEXT_PUBLIC_APP_URL:-http://localhost:3000}
+      NEXT_PUBLIC_APP_URL: ${NEXT_PUBLIC_APP_URL:-http://localhost:3001}
     command:
       - sh
       - -c
@@ -59,11 +59,13 @@ services:
       DATABASE_URL: postgres://${POSTGRES_USER:-docudeck}:${POSTGRES_PASSWORD:-41532145}@docudeck-database:5432/${POSTGRES_DB:-docudeck}
       SESSION_SECRET: ${SESSION_SECRET:-docudeck-local-only-session-secret-change-before-use}
       DOCUMENT_ENCRYPTION_KEY: ${DOCUMENT_ENCRYPTION_KEY:-0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef}
-      NEXT_PUBLIC_APP_URL: ${NEXT_PUBLIC_APP_URL:-http://localhost:3000}
+      NEXT_PUBLIC_APP_URL: ${NEXT_PUBLIC_APP_URL:-http://localhost:3001}
       PORT: 3000
       HOSTNAME: 0.0.0.0
     ports:
-      - "3000:3000"
+      - "3001:3000"
+    volumes:
+      - /app/node_modules
     depends_on:
       docudeck-database-init:
         condition: service_completed_successfully
