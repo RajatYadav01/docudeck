@@ -27,7 +27,7 @@ Docudeck is a lightweight, browser-based collaborative document editor. It suppo
     - [3. Configure local environment variables](#3-configure-local-environment-variables)
     - [4. Start PostgreSQL, migrate and seed](#4-start-postgresql-migrate-and-seed)
     - [5. Start the web application](#5-start-the-web-application)
-    - [7. Run checks and browser tests](#7-run-checks-and-browser-tests)
+    - [6. Run checks and browser tests](#6-run-checks-and-browser-tests)
   - [To run the project using Docker](#to-run-the-project-using-docker)
 
 ## Features
@@ -71,7 +71,6 @@ Docudeck is a lightweight, browser-based collaborative document editor. It suppo
 - **Web**: Next.js, TypeScript, Tailwind CSS
 - **ORM**: Drizzle ORM
 - **Database**: PostgreSQL
-- **AI**: OpenRouter
 - **Testing**: Vitest for unit and integration tests, Playwright for E2E tests
 - **Tooling**: pnpm, Turborepo, Biome, Zod, Docker, Docker Compose
 - **Deployment**: [Vercel](https://vercel.com) (Web) and [Neon](https://neon.com) (Database)
@@ -190,25 +189,6 @@ All application endpoints are under `/api/v1`.
 
 ## Development
 
-Common root commands:
-
-| Command | Description |
-| --- | --- |
-| `pnpm dev` | Start the Next.js web app in development mode |
-| `pnpm build` | Build workspace apps |
-| `pnpm start` | Start the built web app |
-| `pnpm lint` | Run Biome checks |
-| `pnpm format` | Apply Biome formatting |
-| `pnpm typecheck` | Type-check workspace packages and app |
-| `pnpm test` | Run Vitest tests |
-| `pnpm test:e2e` | Run Playwright browser tests |
-| `pnpm db:generate` | Generate Drizzle migration snapshots from schema changes |
-| `pnpm db:migrate` | Apply SQL migrations |
-| `pnpm db:seed` | Seed demo users and sample content |
-| `pnpm db:setup` | Apply migrations and seed data |
-
-The `packages/database/drizzle/` directory contains SQL migrations used by `migrate.ts`. The Drizzle Kit generation command is provided for future schema changes; review generated migrations before committing them.
-
 ## Prerequisites
 
 - Node.js (preferably, version >= v24.x)
@@ -221,7 +201,7 @@ The `packages/database/drizzle/` directory contains SQL migrations used by `migr
 
 ### 1. Clone the project's repository
 
-```bash
+```shell
 git clone https://github.com/RajatYadav01/docudeck
 cd docudeck
 ```
@@ -230,15 +210,15 @@ If this source is being used from an exported archive, extract it and change int
 
 ### 2. Install dependencies
 
-```bash
+```shell
 pnpm install
 ```
 
-The first install generates `pnpm-lock.yaml` if the repository has not yet been locked. Commit that lockfile before relying on frozen installs in CI or deployment.
+The first install generates `pnpm-lock.yaml` if the repository has not yet been locked.
 
 ### 3. Configure local environment variables
 
-```bash
+```shell
 cp .env.example .env
 ```
 
@@ -251,7 +231,7 @@ Edit `.env` and configure:
 
 Generate strong local secrets with:
 
-```bash
+```shell
 openssl rand -base64 48
 openssl rand -hex 32
 ```
@@ -260,17 +240,13 @@ The values in `.env.example` are development placeholders only. Never reuse them
 
 ### 4. Start PostgreSQL, migrate and seed
 
-Start a local PostgreSQL instance separately, or use the included database service:
-
-```bash
-docker compose up -d docudeck-database
-```
+Start a local PostgreSQL instance.
 
 For a database running on localhost, keep the `.env.example` `DATABASE_URL` value. For an external database, replace it with the provider's connection string.
 
 Then apply the schema and insert demo data:
 
-```bash
+```shell
 pnpm db:migrate
 pnpm db:seed
 ```
@@ -287,53 +263,63 @@ The seed creates a sample Alice-owned document and shares it with Bob as an Edit
 
 ### 5. Start the web application
 
-```bash
+```shell
 pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) and sign in with one of the demo accounts.
+Open `http://localhost:3000` and sign in with one of the demo accounts.
 
-### 7. Run checks and browser tests
+### 6. Run checks and browser tests
 
-```bash
-pnpm lint
-pnpm typecheck
-pnpm test
+Common commands:
+
+```shell
+pnpm format                 # Format files with Biome
+pnpm lint                   # Run Biome lint checks
+pnpm typecheck              # TypeScript checks across the workspace
+pnpm test                   # Run all workspace tests through Turborepo
+pnpm test:unit              # Run only the unit tests
+pnpm test:integration       # Run only the integration tests
 ```
 
-For browser tests, start the app and make sure the database has been migrated and seeded in another terminal. Then run:
+For E2E tests, start the app and make sure the database has been migrated and seeded in another terminal. Then run:
 
-```bash
+```shell
 BASE_URL=http://localhost:3000 pnpm test:e2e
 ```
 
 Playwright browser binaries may need to be installed once:
 
-```bash
+```shell
 pnpm --filter @docudeck/e2e-tests exec playwright install chromium
 ```
 
 ## To run the project using Docker
 
-1. Copy `.env.example` to `.env` and replace the example secrets.
-2. From the repository root, build and start the complete stack:
+1. Clone the project's repository.
 
-```bash
-docker compose up --build
-```
+   ```shell
+   git clone https://github.com/RajatYadav01/docudeck.git
+   ```
 
-Compose starts the `docudeck-database` PostgreSQL service, waits for its health check, runs `docudeck-database-init` using the web application's Dockerfile `tools` target, then starts `docudeck-web` after migrations and seeding complete.
+2. Go to the project folder using the CLI.
 
-Open [http://localhost:3000](http://localhost:3000). To stop the services:
+   ```shell
+   cd docudeck
+   ```
 
-```bash
-docker compose down
-```
+3. Copy `.env.example` to `.env` and replace the example secrets.
 
-To remove the local database volume as well (this permanently deletes local database data):
+4. Run the project using docker-compose.
 
-```bash
-docker compose down -v
-```
+   ```shell
+   docker-compose up --build
+   ```
 
-The Docker image intentionally retains workspace dependencies so the same web Dockerfile can also run TypeScript migration and seed scripts in the initialization service. This favors a predictable demo setup over the smallest possible production image.
+5. After all the containers have been started, open any browser and go to `http://localhost:3001` to access the web application.
+
+6. Stop the containers with:
+
+   ```shell
+   docker compose down
+   ```
